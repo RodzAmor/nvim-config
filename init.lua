@@ -1,6 +1,4 @@
-vim.opt.rtp:prepend("~/.config/nvim/lazy/lazy.nvim")
-
-require("lazy").setup("plugins")
+require("config.lazy")
 
 vim.o.number = true
 vim.o.relativenumber = false 
