@@ -26,6 +26,9 @@ return {
             vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
             vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
             vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
+            vim.keymap.set("n", "<leader>fp", function()
+                require("telescope").extensions.projects.projects()
+            end, { desc = "Find Projects" })
         end,
     },
     {
@@ -50,6 +53,17 @@ return {
         config = function()
             require("nvim-tree").setup({})
             vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
+        end,
+    },
+    {
+        "ahmedkhalf/project.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("project_nvim").setup({
+                detection_methods = { "pattern" },
+                patterns = { ".git", "Makefile", "package.json", ".project-root" },
+            })
+            require("telescope").load_extension("projects")
         end,
     }
 }
