@@ -19,6 +19,20 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "williamboman/mason.nvim",
+    config = true,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = true,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("lspconfig").astro.setup({})
+    end,
   }
 }
 
