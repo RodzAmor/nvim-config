@@ -53,6 +53,7 @@ return {
         config = function()
             require("nvim-tree").setup({})
             vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
+            vim.keymap.set("n", "<leader>o", "<cmd>NvimTreeFocus<CR>")
         end,
     },
     {
