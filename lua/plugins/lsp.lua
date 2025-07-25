@@ -6,7 +6,7 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "astro", "texlab" },
+            ensure_installed = { "astro", "texlab", "clangd", "rust_analyzer" },
         },
     },
     {
@@ -29,6 +29,8 @@ return {
                     },
                 },
             })
+            lspconfig.clangd.setup({})
+            lspconfig.rust_analyzer.setup({})
         end,
     },
 } 
