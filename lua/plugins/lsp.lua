@@ -6,7 +6,7 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "astro", "texlab", "clangd", "rust_analyzer" },
+            ensure_installed = { "astro", "texlab", "clangd", "rust_analyzer", "gopls" },
         },
     },
     {
@@ -31,6 +31,17 @@ return {
             })
             lspconfig.clangd.setup({})
             lspconfig.rust_analyzer.setup({})
+            lspconfig.gopls.setup({
+                settings = {
+                    gopls = {
+                        analyses = {
+                            unusedparams = true,
+                        },
+                        staticcheck = true,
+                        gofumpt = true,
+                    }
+                }
+            })
         end,
     },
 } 
