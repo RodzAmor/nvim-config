@@ -13,8 +13,21 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
-            lspconfig.astro.setup({})
+
+            local on_attach = function(_, bufnr)
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+                vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { buffer = bufnr })
+                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr })
+                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
+            end
+
+            lspconfig.astro.setup({
+                on_attach = on_attach,
+            })
+
             lspconfig.texlab.setup({
+                on_attach = on_attach,
                 settings = {
                     texlab = {
                         build = {
@@ -29,9 +42,16 @@ return {
                     },
                 },
             })
-            lspconfig.clangd.setup({})
-            lspconfig.rust_analyzer.setup({})
+            lspconfig.clangd.setup({
+                on_attach = on_attach,
+            })
+            
+            lspconfig.rust_analyzer.setup({
+                on_attach = on_attach,
+            })
+
             lspconfig.gopls.setup({
+                on_attach = on_attach,
                 settings = {
                     gopls = {
                         analyses = {
