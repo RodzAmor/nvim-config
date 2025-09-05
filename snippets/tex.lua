@@ -11,3 +11,4 @@ return {
     t({ "", "\\end{" }), f(function(args) return args[1][1] end, {1}), t("}")
   }),
 }
+

@@ -32,24 +32,7 @@ return {
             })
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
-            lspconfig.astro.setup({ capabilities = capabilities })
-            lspconfig.texlab.setup({
-                capabilities = capabilities,
-                settings = {
-                    texlab = {
-                        build = {
-                            executable = "latexmk",
-                            args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-                            onSave = true,
-                        },
-                        forwardSearch = {
-                            executable = "zathura",
-                            args = { "--synctex-forward", "%l:1:%f", "%p" },
-                        },
-                    },
-                },
-            })
         end,
     },
 } 
+
